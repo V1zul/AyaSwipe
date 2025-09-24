@@ -1,5 +1,5 @@
 /* ==========================================================
-   Qur’an Swipe — For You as main feed, Surah picker, mobile polish
+   AyaSwipe — For You as main feed, Surah picker, mobile polish
    ========================================================== */
 (() => {
     const feed = document.getElementById('feed');

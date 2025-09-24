@@ -78,11 +78,19 @@ html,body{
   background:var(--glass); border:1px solid var(--stroke);
   backdrop-filter:blur(2px); border-radius:20px; padding:clamp(1rem,4vw,2rem)
 }
-.text-ar{
-  direction:rtl; text-align:center; font-weight:800;
-  line-height:1.9; font-size:clamp(1.7rem,5.6vw,3.2rem);
-  color:var(--fg); word-break:break-word
+.text-ar {
+  direction: rtl;
+  text-align: center;
+  font-weight: 800;
+  font-family: "Scheherazade New", "Amiri", "Noto Naskh Arabic", serif;
+  line-height: 2.2;                  /* more breathing space for harakaat */
+  font-size: clamp(1.6rem, 4.8vw, 2.8rem); /* scale smoothly, slightly smaller */
+  color: var(--fg);
+  word-break: break-word;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
 }
+
 .meta{ text-align:center; margin-top:.8rem; font-size:clamp(.9rem,2.5vw,1rem); color:var(--fg-dim)}
 
 /* Tajweed tint */
