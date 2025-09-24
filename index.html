@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no" />
+    <title>Qur’an Swipe</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <!-- Start Gate -->
+    <div id="gate">
+        <div class="gate-inner">
+            <h1>Qur’an Swipe</h1>
+            <p>Tap Start to enable audio, then swipe up.</p>
+
+            <div class="auth">
+                <input id="username" placeholder="Choose a username (optional)" />
+                <button id="saveUserBtn">Save</button>
+            </div>
+
+            <button id="startBtn" aria-label="Start recitation">Start</button>
+        </div>
+    </div>
+
+    <!-- Tiny top strip (username only) -->
+    <header id="topbar">
+        <div id="whoami"></div>
+    </header>
+
+    <!-- Surah Drawer -->
+    <aside id="drawer" aria-hidden="true">
+        <div class="drawer-head">
+            <span>All Surahs</span>
+            <button id="closeDrawer">✕</button>
+        </div>
+        <input id="surahSearch" placeholder="Search by name…" />
+        <ul id="surahList"></ul>
+    </aside>
+    <div id="scrim"></div>
+
+    <!-- Mute FAB -->
+    <button id="muteBtn" class="fab" aria-label="Toggle audio" hidden>🔊</button>
+
+    <!-- Snap-scrolling feed -->
+    <main id="feed" aria-live="polite" aria-busy="true"></main>
+
+    <footer id="bottombar" role="tablist">
+        <!-- moving glow pill (goes under the active tab) -->
+        <div id="pillIndicator" aria-hidden="true"></div>
+
+        <!-- Left: Surahs (drawer) -->
+        <button id="drawerBtn" class="btab pos-l1" aria-label="Open Surah list">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor"
+                    d="M5 4h9a3 3 0 0 1 3 3v11.5a.5.5 0 0 1-.78.41L12 16.5l-4.22 2.41A.5.5 0 0 1 7 18.5V7a3 3 0 0 0-2-3Z" />
+                <path fill="currentColor"
+                    d="M19 7v11.5a.5.5 0 0 1-.78.41L15 17.67V7a2 2 0 0 0-2-2h-9v-.5A1.5 1.5 0 0 1 5.5 3H14a5 5 0 0 1 5 5Z"
+                    opacity=".45" />
+            </svg>
+            <span>Surahs</span>
+        </button>
+
+        <!-- Left-middle: Ayah of the Day -->
+        <button class="btab pos-l2" data-mode="aotd" role="tab">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor"
+                    d="M12 2l2.2 5.7 6 .4-4.6 3.8 1.5 5.8L12 15.8 6.9 17.7 8.4 11.9 3.8 8.1l6-.4L12 2Z" />
+            </svg>
+            <span>Ayah</span>
+        </button>
+
+        <!-- Center: For You (main) -->
+        <button class="btab center" data-mode="foryou" role="tab" aria-current="page">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor"
+                    d="M12 2l2.2 5.7 6 .4-4.6 3.8 1.5 5.8L12 15.8 6.9 17.7 8.4 11.9 3.8 8.1l6-.4L12 2Z" />
+            </svg>
+            <span>For You</span>
+        </button>
+
+        <!-- Right: Surah of the Week -->
+        <button class="btab pos-r1" data-mode="sotw" role="tab">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M5 9h14v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9Z" />
+                <path fill="currentColor" d="M7 9V7a5 5 0 0 1 10 0v2H7Z" opacity=".5" />
+                <rect x="9" y="12" width="6" height="5" rx="1" fill="currentColor" />
+            </svg>
+            <span>Surah</span>
+        </button>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
