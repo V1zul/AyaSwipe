@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no" />
+    <title>AyaSwipe · Qur’an</title>
+
+    <!-- CSS must be root-relative so it loads in Vite and static hosting -->
+
+    <!-- PWA (optional, safe even if icons missing) -->
+    <link rel="manifest" href="manifest.webmanifest" />
+    <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" crossorigin href="/AyaSwipe/assets/index-DDW7hEz4.css">
+</head>
+
+<body>
+    <!-- Start Gate (unlocks mobile audio policies) -->
+    <div id="gate" role="dialog" aria-modal="true">
+        <div class="gate-inner">
+            <h1>AyaSwipe</h1>
+            <p>Tap Start to enable audio, then swipe up to recite.</p>
+
+            <div class="auth">
+                <input id="username" placeholder="Choose a username (optional)" />
+                <button id="saveUserBtn">Save</button>
+            </div>
+
+            <button id="startBtn" aria-label="Start recitation">Start</button>
+            <div class="gate-foot">Mishary Alafasy (ID 7) · Uthmani Tajweed</div>
+        </div>
+    </div>
+
+    <!-- Minimal top strip -->
+    <header id="topbar" aria-hidden="true">
+        <div id="whoami"></div>
+    </header>
+
+    <!-- Surah Drawer -->
+    <aside id="drawer" aria-hidden="true">
+        <div class="drawer-sticky">
+            <div class="drawer-head">
+                <span>All Surahs</span>
+                <button id="closeDrawer" aria-label="Close">✕</button>
+            </div>
+            <div class="drawer-search">
+                <svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true">
+                    <path fill="currentColor"
+                        d="M15.5 14h-.8l-.3-.3a6.5 6.5 0 1 0-.7.7l.3.3v.8l5 5 1.5-1.5-5-5Zm-6 0A4.5 4.5 0 1 1 14 9.5 4.5 4.5 0 0 1 9.5 14Z" />
+                </svg>
+                <input id="surahSearch" placeholder="Search by name…" autocomplete="off" />
+            </div>
+        </div>
+        <ul id="surahList" role="list"></ul>
+    </aside>
+    <div id="scrim" aria-hidden="true"></div>
+
+    <!-- FABs: Mute + Font size -->
+    <button id="muteBtn" class="fab fab-right" aria-label="Toggle audio" hidden>🔊</button>
+    <button id="fontBtn" class="fab fab-left" aria-label="Toggle text size" hidden>📖</button>
+
+    <!-- Snap-scrolling feed -->
+    <main id="feed" aria-live="polite" aria-busy="true"></main>
+
+    <!-- Bottom Nav (For You centered) -->
+    <footer id="bottombar" role="tablist" aria-label="Navigation">
+        <div id="pillIndicator" aria-hidden="true"></div>
+
+        <button id="drawerBtn" class="btab pos-l1" aria-label="Open Surah list">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor"
+                    d="M5 4h9a3 3 0 0 1 3 3v11.5a.5.5 0 0 1-.78.41L12 16.5l-4.22 2.41A.5.5 0 0 1 7 18.5V7a3 3 0 0 0-2-3Z" />
+                <path fill="currentColor"
+                    d="M19 7v11.5a.5.5 0 0 1-.78.41L15 17.67V7a2 2 0 0 0-2-2h-9v-.5A1.5 1.5 0 0 1 5.5 3H14a5 5 0 0 1 5 5Z"
+                    opacity=".45" />
+            </svg>
+            <span>Surahs</span>
+        </button>
+
+        <button class="btab pos-l2" data-mode="aotd" role="tab" aria-label="Ayah of the Day">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor"
+                    d="M12 2l2.2 5.7 6 .4-4.6 3.8 1.5 5.8L12 15.8 6.9 17.7 8.4 11.9 3.8 8.1l6-.4L12 2Z" />
+            </svg>
+            <span>Ayah</span>
+        </button>
+
+        <button class="btab center" data-mode="foryou" role="tab" aria-current="page" aria-label="For You">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor"
+                    d="M12 2l2.2 5.7 6 .4-4.6 3.8 1.5 5.8L12 15.8 6.9 17.7 8.4 11.9 3.8 8.1l6-.4L12 2Z" />
+            </svg>
+            <span>For You</span>
+        </button>
+
+        <button class="btab pos-r1" data-mode="sotw" role="tab" aria-label="Surah of the Week">
+            <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
+                <path fill="currentColor" d="M5 9h14v9a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V9Z" />
+                <path fill="currentColor" d="M7 9V7a5 5 0 0 1 10 0v2H7Z" opacity=".5" />
+                <rect x="9" y="12" width="6" height="5" rx="1" fill="currentColor" />
+            </svg>
+            <span>Surah</span>
+        </button>
+    </footer>
+
+    <!-- JS must be root-relative for Vite/static -->
+    <script src="main.js" defer></script>
+    <link rel="manifest" href="manifest.webmanifest" />
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', async () => {
+                try { await navigator.serviceWorker.register('sw.js', { scope: './' }); } catch { }
+            });
+        }
+    </script>
+
+
+</body>
+
+</html>
