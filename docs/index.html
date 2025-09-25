@@ -7,14 +7,14 @@
         content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover, user-scalable=no" />
     <title>AyaSwipe · Qur’an</title>
 
-    <!-- CSS must be root-relative so it loads in Vite and static hosting -->
-    <link rel="stylesheet" href="${import.meta.env.BASE_URL}style.css" />
+    <!-- CSS must be root-relative so it loads in Vite and static hosting -->
 
     <!-- PWA (optional, safe even if icons missing) -->
-    <link rel="manifest" href="${import.meta.env.BASE_URL}manifest.webmanifest" />
+    <link rel="manifest" href="manifest.webmanifest" />
     <meta name="theme-color" content="#000000" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+  <link rel="stylesheet" crossorigin href="/AyaSwipe/assets/index-DDW7hEz4.css">
 </head>
 
 <body>
@@ -107,21 +107,18 @@
     </footer>
 
     <!-- JS must be root-relative for Vite/static -->
-    <script src="${import.meta.env.BASE_URL}script.js" defer></script>
-
-    <!-- Register SW (optional) -->
+    <script src="script.js" defer></script>
+
+    <script src="script.js" defer></script>
+    <link rel="manifest" href="manifest.webmanifest" />
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', async () => {
-                try {
-                    await navigator.serviceWorker.register(
-                        `${import.meta.env.BASE_URL}sw.js`,
-                        { scope: import.meta.env.BASE_URL }
-                    );
-                } catch { }
+                try { await navigator.serviceWorker.register('sw.js', { scope: './' }); } catch { }
             });
         }
     </script>
+
 
 </body>
 

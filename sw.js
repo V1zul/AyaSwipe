@@ -1,8 +1,15 @@
-const CACHE = 'ayaswipe-v1';
+// sw.js
+const CACHE = 'ayaswipe-v3';
+const B = self.registration.scope; // e.g. https://v1zul.github.io/QuranApp/
+
 const ASSETS = [
-  '/', '/index.html', '/style.css', '/script.js',
-  '/manifest.webmanifest',
-  '/icons/icon-192.png', '/icons/icon-512.png'
+  `${B}`,                   // index
+  `${B}index.html`,
+  `${B}style.css`,
+  `${B}script.js`,
+  `${B}manifest.webmanifest`,
+  `${B}icons/icon-192.png`,
+  `${B}icons/icon-512.png`,
 ];
 
 self.addEventListener('install', e=>{
